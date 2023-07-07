@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      ul li {
+        list-style: none;
+      }
+      .slideshow {
+        position: relative;
+        width: 600px;
+        height: 400px;
+        margin: 0 auto;
+        overflow: hidden;
+      }
+      .slideshow ul li {
+        float: left;
+        width: 600px;
+        height: 400px;
+      }
+      /*img定位大小*/
+      .slideshow ul li a img {
+        width: 600px;
+        height: 400px;
+      }
+    </style>
+  </head>
+  <body>
+    <footer class="slideshow">
+      <ul>
+        <li>
+          <a href="#"><img src="./src/img/1.jpg" alt="" /></a>
+        </li>
+        <li>
+          <a href="#"><img src="./src/img/2.jpg" alt="" /></a>
+        </li>
+        <li>
+          <a href="#"><img src="./src/img/3.jpg" alt="" /></a>
+        </li>
+      </ul>
+    </footer>
+
+    <script>
+      window.addEventListener("load", function () {
+        let a = document.querySelector(".slideshow ul");
+
+        let num = 0;
+        console.log(a.children.length); //3
+
+        var len = a.children[0].clientWidth; //第一个视口宽度
+
+        //2s一刷新
+        setInterval(function () {
+          if (num == a.children.length) {
+            a.style.left = "0px";
+            a.style.transition = "left 0s";
+            num = 1;
+          } else {
+            a.style.left = -len * num + "px";
+            a.style.transition = "left 1s";
+            num++;
+          }
+        }, 2000);
+      });
+    </script>
+  </body>
+</html>
